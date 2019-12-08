@@ -31,7 +31,6 @@ const compute = intcode => {
         break
     }
   }
-
   return intcode
 }
 
