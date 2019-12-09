@@ -8,7 +8,8 @@ const setGravity = (intcode, noun, verb) => {
   return intcode
 }
 
-const compute = intcode => {
+const compute = ({intcode, noun, verb}) => {
+  intcode = setGravity(intcode, noun, verb)
   for (let index = 0; index < intcode.length; index += 4) {
     let opcode = intcode[index]
     let firstOperator = intcode[intcode[index + 1]]
@@ -40,8 +41,9 @@ fs.readFile(__dirname + '/inputs', 'utf8', (err, data) => {
 
   for (let noun = 0; noun < 100; noun++) {
     for (let verb = 0; verb < 100; verb++) {
-      intcode = setGravity(intcode, noun, verb)
-      result = compute({ intcode: [...intcode], noun, verb })[0]
+      result = compute({intcode: [...intcode], noun, verb })[0]
+      console.log(result)
+
       if (result === TO_FIND) {
         console.log(100 * noun + verb)
         return
