@@ -75,8 +75,14 @@ const getPathTraces = wire => {
     initialPosition = positions[positions.length - 1]
     traces.push(...positions)
   }
+  console.log(traces)
   return traces
 }
+
+const getWireCrossings = (trace1, trace2) => {
+  return trace1.filter(coords => trace2.includes(coords))
+}
+
 
 fs.readFile(__dirname + '/inputs', 'utf8', (err, data) => {
   if (err) throw err
@@ -91,4 +97,7 @@ fs.readFile(__dirname + '/inputs', 'utf8', (err, data) => {
   })
 
   const [trace1, trace2] = [getPathTraces(wire1), getPathTraces(wire2)]
+
+  console.log(getWireCrossings(trace1, trace2))
+
 })
